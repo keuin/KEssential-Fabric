@@ -154,11 +154,4 @@ public class CommandHandler {
         return String.format("%s in %s", posString, worldName);
     }
 
-    private class TPS {
-        private final double m1;
-        private final double m5;
-        private final double m15;
-        
-    }
-
 }
