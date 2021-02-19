@@ -150,7 +150,7 @@ public class CommandHandler {
      * @return the location string.
      */
     private static String getPlayerEntityLocationString(ServerPlayerEntity entity) {
-        String rawWorldName = entity.getEntityWorld().getDimension().getType().toString();
+        String rawWorldName = entity.getEntityWorld().getRegistryKey().getValue().toString();
         String dimName = rawWorldName.startsWith("minecraft:") ? rawWorldName.substring("minecraft:".length()) : rawWorldName;
         String posString = String.format("(%.1f, %.1f) with y=%.1f", entity.getPos().getX(), entity.getPos().getZ(), entity.getPos().getY());
         return String.format("%s in %s", posString, dimName);
@@ -160,7 +160,7 @@ public class CommandHandler {
         Objects.requireNonNull(entity);
         String name = entity.getEntityName();
         Vec3d pos = entity.getPos();
-        String rawWorldName = entity.getEntityWorld().getDimension().getType().toString();
+        String rawWorldName = entity.getEntityWorld().getRegistryKey().getValue().toString();
         String dimName = rawWorldName.startsWith("minecraft:") ? rawWorldName.substring("minecraft:".length()) : rawWorldName;
         // trueKeuin @ [x:-9, y:13, z:-127, dim:overworld]
         return String.format("[x:%.0f, y:%.0f, z:%.0f, dim:%s]", pos.x, pos.y, pos.z, dimName);
