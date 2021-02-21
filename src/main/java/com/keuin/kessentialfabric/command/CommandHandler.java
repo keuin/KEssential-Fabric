@@ -24,6 +24,8 @@ public class CommandHandler {
     private static final int SUCCESS = 1;
     private static final int FAILED = -1;
 
+    private static final int restartExitCode = 111;
+
 
     /**
      * Send a message with a player mentioned..
@@ -140,6 +142,13 @@ public class CommandHandler {
             PrintUtil.msgInfo(context, String.format("Player %s is at %s.", serverPlayerEntity.getName().getString(), locationString));
         }
 
+        return SUCCESS;
+    }
+
+    public static int reboot(CommandContext<ServerCommandSource> context) {
+        PrintUtil.broadcast("Restarting server...", Formatting.DARK_RED);
+        context.getSource().getMinecraftServer().stop(true);
+        System.exit(restartExitCode);
         return SUCCESS;
     }
 

@@ -1,6 +1,7 @@
 package com.keuin.kessentialfabric.command;
 
 import com.keuin.kessentialfabric.command.suggestion.PlayerNameSuggestionProvider;
+import com.keuin.kessentialfabric.util.PermissionValidator;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import net.minecraft.server.command.CommandManager;
@@ -40,6 +41,10 @@ public final class CommandRegister {
                                         .suggests(PlayerNameSuggestionProvider.getUserIdSuggestionProvider())
                                         .executes(CommandHandler::whereIs)
                         )
+        );
+
+        dispatcher.register(
+                CommandManager.literal("restart").requires(PermissionValidator::op).executes(CommandHandler::reboot)
         );
 
     }
